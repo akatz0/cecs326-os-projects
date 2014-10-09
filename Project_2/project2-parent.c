@@ -48,11 +48,6 @@ int main(int argc, char *argv[])
 		exit(1);		
 	}
 	
-	// Cast args as integers
-	sleep_time = atoi(argv[1]);
-	op1 = atoi(argv[2]);
-	op2 = atoi(argv[3]);
-	
 	// Print out the parent info
 	printf("\nI am the parent process, the maximum sleep time is %d and the two numbers are %d and %d\n", sleep_time, op1, op2);
     
