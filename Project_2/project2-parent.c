@@ -9,8 +9,7 @@
 int main(int argc, char *argv[])
 {
 	// Declare variables
-	int sleep_time, op1, op2;
-	static char *child_argv[] = {"lab1", "5", (char *) 0};
+	int sleep_time, op1, op2, child_num;
 	
 	// Validate arg amount
 	if(argc != 4) 
@@ -43,45 +42,16 @@ int main(int argc, char *argv[])
 	// Sleep for randomized sleep_time
 	sleep(sleep_time);
 
-	
-
 	/* TODO: execute 4 x child processes (project2-child.c) passing child_num, sleep_time, op1 & op2 */
-	for (int i = 0; i < 4; i++) {
+	for (child_num = 0; child_num < 4; child_num++) {
 		// fork() to create new process and exec to run project2-child.c, passing child_argv as arguments to child process
 		// child_argv[] = {"project2-child", i, sleep_time, op1, op2}
-	}
-
-
-	/*
-	CODE BELOW IS FROM PROJECT_1
-	//generate binary process tree
-	while(current_level < max_level)
-	{	
-		//If child, gather parent id, iterate, then continue
-		if((lchildpid = fork()) == 0 || (rchildpid = fork()) == 0) {
-			parentpid = getppid();
-			current_level++;
-			continue;
+		if(fork() == 0) {
+			static char *child_argv[] = {"project2-child", op1, op2, child_num, sleep_time, (char *) 0};	
+			printf("Forked child %ld", (long)getpid());
+			execvp("project2-child", child_argv);
 		}
-		
-		//check for forking errors
-		if(lchildpid == -1 || rchildpid == -1) 
-		{
-			perror("\n The fork failed\n");
-			exit(1);
-		}
-		
-		//If current fork has two children, print complete generation to console and exit while loop
-		if(lchildpid && rchildpid){
-			printf("%d\t%ld\t%ld\t%ld\t%ld\n", current_level, (long)getpid(), (long)getppid(), (long)lchildpid, (long)rchildpid);
-			break;
-		}	
 	}
-	//wait for children to end to ensure valid getppid() calls
-	waitpid(lchildpid, &status_ptr, 0);
-   	waitpid(rchildpid, &status_ptr, 0);
-	exit(0);
-	*/
 
 //end main
 }
