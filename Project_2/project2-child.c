@@ -44,10 +44,7 @@ int main(int argc, char *argv[])
         	exit(1); 
 	}	
 
-	// Cast args to integer	
-	sleep_time = atoi(argv[1]);
-	op1 = atoi(argv[2]);
-	op2 = atoi(argv[3]);
+	// Cast argument to integer	
 	child_num = atoi(argv[4]);
 	
 	// Initialize Random Number Generator (using pid as seed)
@@ -59,7 +56,7 @@ int main(int argc, char *argv[])
 	// Child sleeps for random sleep_time
 	sleep(sleep_time);
 
-	/* Print out the child number, PID and it's associated arithmatic operation */
+	/* Print out the child number, PID and it's associated arithmetic operation */
 	switch(child_num) {
 		case 0:
 			printf("I am child number %i with PID %ld, the sum is %i\n", child_num, (long)getpid(), op1 + op2);
@@ -79,7 +76,7 @@ int main(int argc, char *argv[])
 			printf("I am child number %i with PID %ld, the product is %i\n", child_num, (long)getpid(), op1 * op2);
 			break;
 		default:
-			printf("There are no assigned opperations for child number %d", child_num);
+			printf("There are no assigned operations for child number %d", child_num);
 			break;
 	}	
 //end main
