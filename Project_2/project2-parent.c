@@ -7,6 +7,8 @@
 /*
 * PROGRAM: project2-parent.c
 *
+* Usage: ./project2-parent.out [sleep-time] [operand-1] [operand-2]
+*
 * Takes command line arguments for maximum sleep-time T which must be in the range
 * 0 < sleep_time < 50 and two integer operands. The process then prints the two numbers
 * and sleeps for a random time modulo T. Then the process is forked 4 times, if the fork
@@ -34,7 +36,7 @@ int main(int argc, char *argv[])
 	if( (sscanf(argv[1], "%i", &sleep_time) != 1)
 	    || (sscanf(argv[2], "%i", &op1) != 1)
 	    || (sscanf(argv[3], "%i", &op2) != 1)) {
-        	printf("Argument Error: The sleep argument is not an integer\n");
+        	printf("Argument Error: All arguments must be integers\n");
 		printf("Usage: %s [sleep-time] [operand-1] [operand-2]", argv[0]);
         	exit(1); 
 	}

@@ -4,11 +4,15 @@
 #include <unistd.h>
 
 /* 
-* PROGRAM: Project2-child.c
+* PROGRAM: project2-child.c
 * 
-* Sleeps for a random time (maximum sleep time being command line argument 1), 
-* then prints a statement based on the child number (argv[4]) which includes
-* the child number, it's PID, and an arithmatic operation based on child number.
+* Usage: ./project2-child.out [sleep-time] [operand-1] [operand-2] [child-num]
+
+* Sleeps for a random time modulo sleep-time, then prints to the console
+* the child number, it's PID, and an arithmatic operation based on child number
+* if child number is not in range [0,3] prints message warning that there are 
+* no operations assigned to that child number. If the second operand is zero,
+* a divide-by-zero error message is printed when child number = 3 (division).
 *
 * child number 0: operand 1 (argv[2]) + operand 2 (argv[3]) = sum
 * child number 1: operand 1 (argv[2]) - operand 2 (argv[3]) = difference
@@ -26,10 +30,20 @@ int main(int argc, char *argv[])
 	// Validate arg amount
 	if(argc != 5) 
 	{
-		printf("\nERROR: Incorrect number of arguments\nUsage: %s [sleep-time] [integer-operand-1] [integer-operand-2] [child-num]\n\n", argv[0]);
+		printf("\nERROR: Incorrect number of arguments\nUsage: %s [sleep-time] [operand-1] [operand-2] [child-num]\n\n", argv[0]);
 		exit(1);		
 	}
-	
+
+	/* Error check the command line arguments */
+	/* If they’re all valid initialize */
+	if( (sscanf(argv[1], "%i", &sleep_time) != 1)
+	    || (sscanf(argv[2], "%i", &op1) != 1)
+	    || (sscanf(argv[3], "%i", &op2) != 1)) {
+        	printf("Argument Error: All arguments must be integers\n");
+		printf("Usage: %s [sleep-time] [operand-1] [operand-2]", argv[0]);
+        	exit(1); 
+	}	
+
 	// Cast args to integer	
 	sleep_time = atoi(argv[1]);
 	op1 = atoi(argv[2]);
@@ -63,6 +77,9 @@ int main(int argc, char *argv[])
 			break;
 		case 3:
 			printf("I am child number %i with PID %ld, the product is %i\n", child_num, (long)getpid(), op1 * op2);
+			break;
+		default:
+			printf("There are no assigned opperations for child number %d", child_num);
 			break;
 	}	
 //end main
