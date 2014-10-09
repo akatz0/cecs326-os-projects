@@ -16,9 +16,9 @@
 *
 * child number 0: operand 1 (argv[2]) + operand 2 (argv[3]) = sum
 * child number 1: operand 1 (argv[2]) - operand 2 (argv[3]) = difference
-* child number 2: operand 1 (argv[2]) * operand 2 (argv[3]) = product
-* child number 3: operand 1 (argv[2]) / operand 2 (argv[3]) = quotient 
+* child number 2: operand 1 (argv[2]) / operand 2 (argv[3]) = quotient 
 *		& operand 1 (argv[2]) % operand 2 (argv[3]) = remainder
+* child number 3: operand 1 (argv[2]) * operand 2 (argv[3]) = product
 *
 *
 */
