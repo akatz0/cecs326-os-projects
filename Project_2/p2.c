@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 	//validation
 	if(argc != 4) 
 	{
-		printf("\nUsage: %s max_sleep int_a int_b\n", argv[0]);
+		printf("Usage: %s [sleep-time] [operand-1] [operand-2]", argv[0]);
 		exit(1);		
 	}
 	
@@ -24,22 +24,26 @@ int main(int argc, char *argv[])
 	/* If they’re all valid initialize */
 	if (sscanf (argv[1], "%i", &t)!=1) {
         	printf("Argument Error: The sleep argument is not an integer\n");
+		printf("Usage: %s [sleep-time] [operand-1] [operand-2]", argv[0]);
         	exit(1); 
 	}
 	if (sscanf (argv[2], "%i", &a)!=1) {
         	printf("Argument Error: The integer a argument is not an integer\n");
+		printf("Usage: %s [sleep-time] [operand-1] [operand-2]", argv[0]);
         	exit(1); 
 	}
 	if (sscanf (argv[3], "%i", &b)!=1) {
         	printf("Argument Error: The integer b argument is not an integer\n");
+		printf("Usage: %s [sleep-time] [operand-1] [operand-2]", argv[0]);
         	exit(1); 
 	}
 
 	//Make sure t is within allowable range
 	if(t < 0 || t > MAX_SLEEP)
 	{
-		printf("\nBad Parameter: arg[1] must  be a positive integer less than %d.\n", MAX_SLEEP);
-		exit(1);		
+		printf("\nBad Parameter: sleep-time must  be a positive integer less than %d.\n", MAX_SLEEP);
+		printf("Usage: %s [sleep-time] [operand-1] [operand-2]", argv[0]);	
+		exit(1);
 	}
 	
 	//intialize process args
